@@ -1,0 +1,90 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@(message: String)(resID: Int)
+
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Welcome to Play") {
+
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+
+
+<header>
+    <h1>Add Your Review</h1>
+
+</header>
+
+
+<ul id="reviews"></ul>
+
+
+<form action="@routes.ReviewController.addReview()" method="post">
+    Review Body:
+    <input type="text" name="text">
+    <input hidden type="number" name="restaurant" value="@resID">
+    <br />
+    <br />
+    Rating(out of 5):
+    <input type="radio" name="rating" value="1"> 1 
+    <input type="radio" name="rating" value="2"> 2 
+    <input type="radio" name="rating" value="3"> 3 
+    <input type="radio" name="rating" value="4"> 4 
+    <input type="radio" name="rating" value="5"> 5
+    <br /><br />
+    Add Tags:
+    <input type="checkbox" name="tagCheap" value="Cheap"> Cheap
+    <input type="checkbox" name="tagExpensive" value="Expensive"> Expensive
+    <input type="checkbox" name="tagJuicy" value="Juicy"> Juicy
+    <input type="checkbox" name="tagDry" value="Dry"> Dry
+    <input type="checkbox" name="tagFast" value="Fast"> Fast
+    <input type="checkbox" name="tagSlow" value="Slow"> Slow
+
+    <br />
+    <br />
+    <button>Add Review</button>
+</form>
+
+<br>
+
+<!--
+    <form action="@routes.ReviewController.getReview()" method="get">
+        <button>Get Review</button>
+    </form>
+
+<div>
+    <ul id="votes"></ul>
+    <h4>Example Vote</h4>
+    <p>
+        Normally, the ID will be automatically selected. This is done for testing purposes.
+    </p>
+    <form action="@routes.ReviewController.voteReview()" method="post">
+        <input type="Text" name="reviewID"> enter review ID
+        <button>vote</button>
+    </form>
+
+    <h4>Example Un-Vote</h4>
+    <p>
+        Normally, the ID will be automatically selected. This is done for testing purposes.
+    </p>
+    <form action="@routes.ReviewController.removeVoteReview()" method="post">
+        <input type="Text" name="reviewID"> enter review ID
+        <button>unvote</button>
+    </form>
+<br>
+    <form action="@routes.ReviewController.getAllVotes()" method="get">
+        <button>Get Votes</button>
+    </form>
+
+</div>
+
+ -->
+
+}

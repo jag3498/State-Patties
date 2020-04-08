@@ -1,27 +1,7 @@
-Deployed URL: https://secure-headland-18052.herokuapp.com/
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
-Sprint 3 Details Link: https://docs.google.com/document/d/1AfADvwhYcnvgJ8waEwfh6O5V_NuMBryd29wAvBGMqPY/edit?usp=sharing
-
-Everything is now working. UI has been overhauled, searching works, display works.
-
-To use the application, please create an account and then log in with the account.
-To have admin rights, sign in using user="admin" password="admin"
-  ->  Admin rights let you create a restaurant at /restaurantAdmin
-  
-  
-
-Dev notes:
-
-To get db working locally for testing:
-
-Install postgresql:
-https://www.openscg.com/bigsql/postgresql/installers.jsp/ Set password to "password" during install
-
-Install pgAdmin
-https://www.pgadmin.org/ Connect to db using this tool
-
-Drop all tables (make sure you use drop cascade), then run this:
-
+# --- !Ups
 
 create table person (
   id                            serial not null,
@@ -73,4 +53,30 @@ create index ix_vote_review_id on vote (review_id);
 alter table vote add constraint fk_vote_review_id foreign key (review_id) references review (id) on delete restrict on update restrict;
 
 
+# --- !Downs
+
+alter table if exists review drop constraint if exists fk_review_person_id;
+drop index if exists ix_review_person_id;
+
+alter table if exists review drop constraint if exists fk_review_restaurant_id;
+drop index if exists ix_review_restaurant_id;
+
+alter table if exists tag drop constraint if exists fk_tag_review_id;
+drop index if exists ix_tag_review_id;
+
+alter table if exists vote drop constraint if exists fk_vote_person_id;
+drop index if exists ix_vote_person_id;
+
+alter table if exists vote drop constraint if exists fk_vote_review_id;
+drop index if exists ix_vote_review_id;
+
+drop table if exists person cascade;
+
+drop table if exists restaurant cascade;
+
+drop table if exists review cascade;
+
+drop table if exists tag cascade;
+
+drop table if exists vote cascade;
 

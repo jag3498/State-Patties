@@ -1,0 +1,72 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+
++ nocsrf
+POST /restaurant                    controllers.RestaurantController.addRestaurant(request: Request)
+
+GET /restaurants                    controllers.RestaurantController.getRestaurants
+
+
++ nocsrf
+POST /review                    controllers.ReviewController.addReview(request: Request)
+
+GET /reviews                    controllers.ReviewController.getReview
+
++ nocsrf
+POST /person                    controllers.PersonController.addPerson(request: Request)
+
+GET /persons                    controllers.PersonController.getPersons
+
+GET     /signUp                 controllers.HomeController.signUp
+
+GET 	/restaurantPage			controllers.HomeController.restaurantPage
+
+GET     /restaurantAdmin        controllers.HomeController.restaurantAdmin(request: Request)
+
+GET     /restaurantSingle/:id      controllers.RestaurantController.restaurantSingle(id: Int, request: Request)
+
+GET     /restaurantMap/:id         controllers.RestaurantController.map(id :Long)
+
+GET     /login                  controllers.HomeController.login
+
+GET     /logout                 controllers.LoginController.logout
+
+# GET     /review                  controllers.HomeController.review
+
+GET 	/searchUI				controllers.SearchController.search()
+
+GET     /search/:term                  controllers.SearchController.getSearch(term: String)
+
+GET     /tags                   controllers.SearchController.getTags
+
+GET /tag/:id                    controllers.SearchController.getTagByID(id: Int)
+
+
++ nocsrf
+POST     /loginAction            controllers.LoginController.loginAction(request: Request)
+
+GET     /whoami                 controllers.LoginController.whoami(request: Request)
+GET     /whoamiJson                controllers.LoginController.whoamiJson(request: Request)
+
++ nocsrf
+POST    /voteReview            controllers.ReviewController.voteReview(request: Request)
+
++ nocsrf
+POST    /removeVoteReview           controllers.ReviewController.removeVoteReview(request: Request)
+
+GET     /votes                  controllers.ReviewController.getAllVotes
+
+GET    /getBurgerometer/:restaurantID        controllers.RestaurantController.getBurgerometerRating(restaurantID: Int)
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Routing with parameters
+
+GET /review/votes/:id             controllers.ReviewController.reviewVotes(id: Int)

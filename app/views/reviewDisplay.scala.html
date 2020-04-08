@@ -1,0 +1,161 @@
+@*
+ *fetch the initial data
+ *@
+
+@(index: Int)(id: Long)(ownerID: String)(content: String)(voted: Boolean)(votes: Int)(rating: Long)
+@print("rating" + rating)
+@print("votes" + votes)
+<var id="instanceID"hidden value=@id></var>
+<article class="displayVote">
+
+    <h3>
+        Author: @ownerID
+    </h3>
+    <div class="fastar" id="star0@index">
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+    </div>
+    <div class="fastar" id="star1@index" hidden>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+    </div>
+    <div class="fastar" id="star2@index" hidden>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+    </div>
+    <div class="fastar" id="star3@index" hidden>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+    </div>
+    <div class="fastar" id="star4@index" hidden>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+
+    </div>
+    <div class="fastar" id="star5@index" hidden>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+    </div>
+    <div class="reviewText">
+        <p>@content</p>
+    </div>
+
+    <div id="tags@index">
+
+    </div>
+
+<br>
+
+    <div id="voteButton" >
+        <form id="Vote@index" hidden action="@routes.ReviewController.voteReview()" method="post" style="display: inline">
+            <input value="@id" name="reviewID" hidden>
+            <button class="buttons"> <i class="fa fa-thumbs-up"></i></button>
+        </form>
+        <form id="Unvote@index" hidden action="@routes.ReviewController.removeVoteReview()" method="post" style="display: inline">
+            <input value="@id" name="reviewID" hidden>
+            <button class="buttons"> <i class="fa fa-thumbs-down"></i></button>
+        </form>
+        <p id="count@index" style="display: inline">(0)</p>
+    </div>
+
+    <script src="@routes.Assets.versioned("javascripts/jquery-3.3.1.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+
+      (function() {
+        $(function() {
+          var path = "/review/votes/" + @id;
+          return $.get(path, function(count) {
+              var element = '#count@index';
+              return $(element).text('('+count+')');
+          });
+        });
+      }).call(this);
+
+
+      (function() {
+          $(function() {
+              var path = "/tag/" + @id;
+              return $.get(path, function(data) {
+                  $(data).each(function(index, item) {
+
+                      $("#tags@index").append("<span class=\"badge badge-secondary\">"+ item + "</span>" + "&nbsp;");
+
+                  });
+
+              });
+          });
+      }).call(this);
+
+
+    </script>
+    <script type="text/javascript">
+         if(@rating>0){
+                switch(@rating){
+                    case 1:
+                        document.getElementById("star0@index").hidden = true;
+                        document.getElementById("star1@index").hidden = false;
+                        break;
+                    case 2:
+                        document.getElementById("star0@index").hidden = true;
+                        document.getElementById("star2@index").hidden = false;
+                        break;
+                    case 3:
+                        document.getElementById("star0@index").hidden = true;
+                        document.getElementById("star3@index").hidden = false;
+                        break;
+                    case 4:
+                        document.getElementById("star0@index").hidden = true;
+                        document.getElementById("star4@index").hidden = false;
+                        break;
+                    case 5:
+                        document.getElementById("star0@index").hidden = true;
+                        document.getElementById("star5@index").hidden = false;
+                        break;
+                    default:
+
+
+
+
+                }
+              }
+    </script>
+    <script language="javascript">
+    var currentUser = "not changed";
+
+
+      (function() {
+              if(currentUser === "guest") {
+                  //nothing
+              } else if(@voted){
+                  document.getElementById("Unvote@index").hidden = false;
+              }
+              else if(!@voted){
+                  document.getElementById("Vote@index").hidden = false;
+              }
+
+          }).call(this);
+    </script>
+</article>
+

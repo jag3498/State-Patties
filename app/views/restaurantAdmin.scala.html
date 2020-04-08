@@ -1,0 +1,80 @@
+@(message: String)
+
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Welcome to Play") {
+
+@*
+* Get an `Html` object by calling the built-in Play welcome
+* template and passing a `String` message.
+*@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Restaurants</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+                .checked {
+                  color: orange;
+                }
+            </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/">StatePatties</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/signUp">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/restaurantPage">Restaurants<span class="sr-only">
+                                (current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+
+        </ul>
+    </div>
+</nav >
+<main class="container">
+    <div class="jumbotron">
+        <header>
+            <h1>Restaurants</h1>
+
+        </header>
+
+        <form action="@routes.RestaurantController.addRestaurant()" method="post">
+            Name:
+            <input type="text" name="name">
+            <br>
+            <br>
+            Location:
+            <input type="text" name="location">
+            <br>
+            <br>
+            <button>Add Restaurant</button>
+        </form>
+    </div>
+</main>
+
+
+
+}
