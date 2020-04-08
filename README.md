@@ -1,5 +1,7 @@
 # Penn State Burger Review Website for IST 411
 
+Created in the Java Play framwork, with a JQuery front end.
+
 Deployed URL: https://secure-headland-18052.herokuapp.com/
 
 Sprint 3 Details Link: https://docs.google.com/document/d/1AfADvwhYcnvgJ8waEwfh6O5V_NuMBryd29wAvBGMqPY/edit?usp=sharing
