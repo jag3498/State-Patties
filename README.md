@@ -1,4 +1,4 @@
-#Penn State Burger Review Website for IST 411
+# Penn State Burger Review Website for IST 411
 
 Deployed URL: https://secure-headland-18052.herokuapp.com/
 
@@ -11,7 +11,7 @@ To have admin rights, sign in using user="admin" password="admin"
   ->  Admin rights let you create a restaurant at /restaurantAdmin
   
 
-Dev notes:
+# Dev notes:
 
 To get db working locally for testing:
 
