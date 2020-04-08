@@ -1,3 +1,5 @@
+#Penn State Burger Review Website for IST 411
+
 Deployed URL: https://secure-headland-18052.herokuapp.com/
 
 Sprint 3 Details Link: https://docs.google.com/document/d/1AfADvwhYcnvgJ8waEwfh6O5V_NuMBryd29wAvBGMqPY/edit?usp=sharing
@@ -7,7 +9,6 @@ Everything is now working. UI has been overhauled, searching works, display work
 To use the application, please create an account and then log in with the account.
 To have admin rights, sign in using user="admin" password="admin"
   ->  Admin rights let you create a restaurant at /restaurantAdmin
-  
   
 
 Dev notes:
